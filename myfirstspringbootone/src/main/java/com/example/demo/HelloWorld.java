@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/test")
 public class HelloWorld {
 
+
     @ResponseBody
     @RequestMapping("/test1")
     public String test(){
         System.out.println(112221221);
-        return "OK";
+        return "OK2";
     }
 }
