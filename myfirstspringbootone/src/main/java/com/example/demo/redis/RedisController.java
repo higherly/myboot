@@ -1,10 +1,17 @@
-package com.example.demo.configProperties;
+package com.example.demo.redis;
 
 import com.example.demo.configProperties.bean.TestConfigBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  *关于解释，如果在DemoApplication添加了@EnableConfigurationProperties({TestConfigBean.class,ApplicationConfigBean.class}) 或者
@@ -14,21 +21,17 @@ import org.springframework.web.bind.annotation.RestController;
 * Repository的用法 用于标注数据访问组件，即DAO组件
 * */
 @RestController
-@RequestMapping("config/")
-public class TestController {
+@RequestMapping("/redis/")
+public class RedisController {
 
-   @Value("${test.name}")
-   private String testName;
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
-   @Autowired
-  // @Qualifier("testConfigBean")
-    // 对于多个实例时，表指定了哪个实现类才是我们所需要的
-   private TestConfigBean testConfigBean;
-
+    @ResponseBody
     @RequestMapping("test1")
     public String test2(){
-
-         System.out.println(testConfigBean);
-        return testName;
+        ValueOperations<String, String> ops1 = stringRedisTemplate.opsForValue();
+        System.out.println(ops1.get("foo"));
+        return "ok";
     }
 }
