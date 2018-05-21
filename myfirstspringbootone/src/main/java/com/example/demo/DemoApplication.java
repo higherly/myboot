@@ -4,11 +4,17 @@ import com.example.demo.configProperties.bean.ApplicationConfigBean;
 import com.example.demo.configProperties.bean.TestConfigBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
 //@EnableConfigurationProperties({TestConfigBean.class,ApplicationConfigBean.class}) ///*@EnableConfigurationProperties并指明要注册那个类为bean
-public class DemoApplication {
+public class DemoApplication extends SpringBootServletInitializer {
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(DemoApplication.class);
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);

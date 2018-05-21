@@ -6,7 +6,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
@@ -74,6 +74,37 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
+
+		<!--springboot 项目打成war包
+		1。因配置外部TOMCAT 而配置
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		2.pom.xml文件首部的jar改成war
+		3.将启动类从
+		public class DemoApplication {
+			public static void main(String[] args) {
+			SpringApplication.run(DemoApplication.class, args);
+		}修改为
+		public class DemoApplication extends SpringBootServletInitializer{
+    		@Override
+    		protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        		return builder.sources(DemoApplication.class);
+    		}
+   		 public static void main(String[] args) {
+        	SpringApplication.run(DemoApplication.class, args);
+    	}
+	}
+
+		-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -86,6 +117,8 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<!--指定包名，并去除版本号-->
+		<finalName>demo</finalName>
 	</build>
 
 
