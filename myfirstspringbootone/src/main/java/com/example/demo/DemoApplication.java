@@ -10,11 +10,13 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
 //@EnableConfigurationProperties({TestConfigBean.class,ApplicationConfigBean.class}) ///*@EnableConfigurationProperties并指明要注册那个类为bean
-public class DemoApplication extends SpringBootServletInitializer {
+public class DemoApplication {
+	/* extends SpringBootServletInitializer
+
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		return builder.sources(DemoApplication.class);
-	}
+	}*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);

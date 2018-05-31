@@ -31,7 +31,7 @@ public class RedisController {
     @RequestMapping("test1")
     public String test2(){
         ValueOperations<String, String> ops1 = stringRedisTemplate.opsForValue();
-        System.out.println(ops1.get("foo"));
+        System.out.println(ops1.get("haha"));
         return "ok";
     }
 }
